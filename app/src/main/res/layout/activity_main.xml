@@ -73,7 +73,7 @@
         app:layout_constraintVertical_bias="0.784" />
 
     <EditText
-        android:id="@+id/personalHomeTextBox"
+        android:id="@+id/personalHomeEditTextBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -90,7 +90,7 @@
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <EditText
-        android:id="@+id/familyHomeTextBox"
+        android:id="@+id/familyHomeEditTextBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -106,7 +106,7 @@
         android:autofillHints="" />
 
     <EditText
-        android:id="@+id/friendsHomeTextBox"
+        android:id="@+id/friendsHomeEditTextBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
