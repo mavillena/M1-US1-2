@@ -18,11 +18,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        applyCoordinates();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        saveCoordinates();
+        super.onDestroy();
 
     }
 
     public void onNextClicked(View view) {
+        Intent intent = new Intent(this, LabelActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void saveCoordinates() {
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
@@ -39,10 +52,20 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("friendsCoords", friendCoords.getText().toString());
 
         editor.apply();
-
-        Intent intent = new Intent(this, LabelActivity.class);
-        startActivity(intent);
-        finish();
     }
 
+    public void applyCoordinates() {
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        EditText myCoords = findViewById(R.id.personalHomeEditTextBox);
+        EditText familyCoords = findViewById(R.id.familyHomeEditTextBox);
+        EditText friendCoords = findViewById(R.id.friendsHomeEditTextBox);
+
+        String mine = preferences.getString("myCoords", "No coordinates");
+        String family = preferences.getString("familyCoords", "No coordinates");
+        String friend = preferences.getString("friendCoords", "No coordinates");
+
+        myCoords.setText(mine);
+        familyCoords.setText(family);
+        friendCoords.setText(friend);
+    }
 }
