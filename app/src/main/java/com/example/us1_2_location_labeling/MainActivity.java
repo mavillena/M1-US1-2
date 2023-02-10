@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         EditText familyCoords = findViewById(R.id.familyHomeEditTextBox);
         EditText friendCoords = findViewById(R.id.friendsHomeEditTextBox);
 
-        String mine = preferences.getString("myCoords", "No coordinates");
-        String family = preferences.getString("familyCoords", "No coordinates");
-        String friend = preferences.getString("friendCoords", "No coordinates");
+        String mine = preferences.getString("myCoords", "");
+        String family = preferences.getString("familyCoords", "");
+        String friend = preferences.getString("friendCoords", "");
 
         myCoords.setText(mine);
         familyCoords.setText(family);
