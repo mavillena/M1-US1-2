@@ -30,39 +30,93 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNextClicked(View view) {
-        Intent intent = new Intent(this, LabelActivity.class);
-        startActivity(intent);
-        finish();
+        EditText myCoords = findViewById(R.id.personalHomeCoords);
+        EditText familyCoords = findViewById(R.id.familyHomeCoords);
+        EditText friendCoords = findViewById(R.id.friendsHomeCoords);
+
+        String mine = myCoords.getText().toString();
+        String family = familyCoords.getText().toString();
+        String friend = friendCoords.getText().toString();
+
+        boolean canSwitch = true;
+
+        if (mine.length() == 0 && family.length() == 0 && friend.length() == 0){
+            Utilities.showAlert(this, "Must enter at least one coordinate");
+            canSwitch = false;
+        }
+
+        String[] mineList = Utilities.parseCoords(mine);
+        if (mine.length() == 0){
+            //Does nothing
+        }
+
+        else if (mineList.length != 2 || !Utilities.isValidLongitude(mineList[0]) ||
+                !Utilities.isValidLatitude(mineList[1])) {
+            canSwitch = false;
+            Utilities.showAlert(this, "Personal home coordinates not formatted properly. " +
+                    "Must be two numbers separated by a single space.");
+        }
+
+        String[] familyList = Utilities.parseCoords(family);
+        if (family.length() == 0){
+            //Does nothing
+        }
+
+        else if (familyList.length != 2 || !Utilities.isValidLongitude(familyList[0]) ||
+                !Utilities.isValidLatitude(familyList[1])){
+            canSwitch = false;
+            Utilities.showAlert(this, "Family home coordinates not formatted properly. " +
+                    "Must be two numbers separated by a single space.");
+        }
+
+        String[] friendList = Utilities.parseCoords(friend);
+        if (friend.length() == 0){
+            //Does nothing
+        }
+        else if (friendList.length != 2 || !Utilities.isValidLongitude(friendList[0]) ||
+                !Utilities.isValidLatitude(friendList[1])){
+            canSwitch = false;
+            Utilities.showAlert(this, "Friend home coordinates not formatted properly. " +
+                    "Must be two numbers separated by a single space.");
+        }
+
+
+        if (canSwitch) {
+            Intent intent = new Intent(this, LabelActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void saveCoordinates() {
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        EditText myCoords = findViewById(R.id.personalHomeEditTextBox);
-        EditText familyCoords = findViewById(R.id.familyHomeEditTextBox);
-        EditText friendCoords = findViewById(R.id.friendsHomeEditTextBox);
+        EditText myCoords = findViewById(R.id.personalHomeCoords);
+        EditText familyCoords = findViewById(R.id.familyHomeCoords);
+        EditText friendCoords = findViewById(R.id.friendsHomeCoords);
 
         String mine = myCoords.getText().toString();
         String family = familyCoords.getText().toString();
         String friend = friendCoords.getText().toString();
 
-        editor.putString("myCoords", myCoords.getText().toString());
-        editor.putString("familyCoords", familyCoords.getText().toString());
-        editor.putString("friendsCoords", friendCoords.getText().toString());
+        editor.putString("myCoords", mine);
+        editor.putString("familyCoords", family);
+        editor.putString("friendsCoords", friend);
 
         editor.apply();
     }
 
     public void applyCoordinates() {
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        EditText myCoords = findViewById(R.id.personalHomeEditTextBox);
-        EditText familyCoords = findViewById(R.id.familyHomeEditTextBox);
-        EditText friendCoords = findViewById(R.id.friendsHomeEditTextBox);
+        EditText myCoords = findViewById(R.id.personalHomeCoords);
+        EditText familyCoords = findViewById(R.id.familyHomeCoords);
+        EditText friendCoords = findViewById(R.id.friendsHomeCoords);
 
         String mine = preferences.getString("myCoords", "");
         String family = preferences.getString("familyCoords", "");
         String friend = preferences.getString("friendCoords", "");
+//        Utilities.showAlert(this, family);
 
         myCoords.setText(mine);
         familyCoords.setText(family);

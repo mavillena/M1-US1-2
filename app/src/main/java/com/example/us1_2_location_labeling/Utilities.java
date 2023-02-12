@@ -2,6 +2,7 @@ package com.example.us1_2_location_labeling;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import java.util.*;
 
 public class Utilities {
     public static void showAlert(Activity activity, String message){
@@ -20,7 +21,35 @@ public class Utilities {
     }
 
     public static String[] parseCoords(String str){
-        String[] list = str.split(",");
+        String[] list = str.split(" ");
         return list;
+    }
+
+    public static boolean isValidLatitude(String str){
+        try {
+            int lat = Integer.parseInt(str);
+            if (lat < -90 || lat > 90){
+                return false;
+            }
+            return true;
+        }
+
+        catch(Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean isValidLongitude(String str){
+        try {
+            int longitude = Integer.parseInt(str);
+            if (longitude < -180 || longitude > 180){
+                return false;
+            }
+            return true;
+        }
+
+        catch(Exception e){
+            return false;
+        }
     }
 }
