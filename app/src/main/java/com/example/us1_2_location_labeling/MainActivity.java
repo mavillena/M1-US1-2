@@ -100,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
         String family = familyCoords.getText().toString();
         String friend = friendCoords.getText().toString();
 
-        editor.putString("myCoords", mine);
-        editor.putString("familyCoords", family);
-        editor.putString("friendsCoords", friend);
+        editor.putString("mine", mine);
+        editor.putString("family", family);
+        editor.putString("friend", friend);
 
         editor.apply();
     }
@@ -113,10 +113,9 @@ public class MainActivity extends AppCompatActivity {
         EditText familyCoords = findViewById(R.id.familyHomeCoords);
         EditText friendCoords = findViewById(R.id.friendsHomeCoords);
 
-        String mine = preferences.getString("myCoords", "");
-        String family = preferences.getString("familyCoords", "");
-        String friend = preferences.getString("friendCoords", "");
-//        Utilities.showAlert(this, family);
+        String mine = preferences.getString("mine", "");
+        String family = preferences.getString("family", "");
+        String friend = preferences.getString("friend", "");
 
         myCoords.setText(mine);
         familyCoords.setText(family);

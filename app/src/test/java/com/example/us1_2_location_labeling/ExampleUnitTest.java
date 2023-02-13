@@ -50,4 +50,8 @@ public class ExampleUnitTest {
         assertEquals(false, Utilities.isValidLatitude(s5));
         assertEquals(false, Utilities.isValidLatitude(s6));
     }
+
+    @Test
+    public void checkLongitudeTest() {}
+
 }
