@@ -52,6 +52,8 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void checkLongitudeTest() {}
+    public void checkLongitudeTest() {
+
+    }
 
 }
