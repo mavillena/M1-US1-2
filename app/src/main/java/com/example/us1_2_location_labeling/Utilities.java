@@ -27,7 +27,7 @@ public class Utilities {
 
     public static boolean isValidLatitude(String str){
         try {
-            int lat = Integer.parseInt(str);
+            double lat = Double.parseDouble(str);
             if (lat < -90 || lat > 90){
                 return false;
             }
@@ -41,7 +41,7 @@ public class Utilities {
 
     public static boolean isValidLongitude(String str){
         try {
-            int longitude = Integer.parseInt(str);
+            double longitude = Double.parseDouble(str);
             if (longitude < -180 || longitude > 180){
                 return false;
             }
